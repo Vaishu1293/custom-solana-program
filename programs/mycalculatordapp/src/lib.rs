@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("G5SJ2m36Yx7UKs3jmNeT2bA7JFbnXUFE4tDjnLRUWeQk");
+declare_id!("4a2HFaLVkRpduW4bUfGgxPnbWTge88hYvHQkQA8arH1p");
 
 #[program]
 pub mod mycalculatordapp {

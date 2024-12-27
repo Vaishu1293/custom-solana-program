@@ -5,14 +5,26 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-mycalculatordapp = "G5SJ2m36Yx7UKs3jmNeT2bA7JFbnXUFE4tDjnLRUWeQk"
+mycalculatordapp = "4a2HFaLVkRpduW4bUfGgxPnbWTge88hYvHQkQA8arH1p"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
-wallet = "~/.config/solana/id.json"
+cluster = "https://api.devnet.solana.com"
+wallet = "/home/vaishalichandrashekhar/.config/solana/id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+
+[test]
+startup_wait = 30000
+
+[workspace]
+members = [
+    "programs/*"
+]
+
+[deploy]
+timeout = 300
+
