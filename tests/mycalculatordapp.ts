@@ -1,14 +1,15 @@
-const assert = require('assert')
-const anchor = require('@project-serum/anchor')
-const {SystemProgram} = anchor.web3
+const assert = require('assert');
+const anchor = require('@project-serum/anchor');
+const { SystemProgram } = anchor.web3;
 
 describe('mycalculatordapp', () => {
-    const provider = anchor.provider.local();
-    anchor.setProvider(provider)
-    const calculator = anchor.web3.Keypair.generate()
-    const program = anchor.workspace.Mycalculatordapp
+    const provider = anchor.AnchorProvider.env(); // Use environment configuration
+    anchor.setProvider(provider);
 
-    it('Creates a calculator', async() => {
+    const calculator = anchor.web3.Keypair.generate();
+    const program = anchor.workspace.Mycalculatordapp;
+
+    it('Creates a calculator', async () => {
         await program.rpc.create("Welcome to Solana", {
             accounts: {
                 calculator: calculator.publicKey,
@@ -16,8 +17,9 @@ describe('mycalculatordapp', () => {
                 systemProgram: SystemProgram.programId
             },
             signers: [calculator]
-        })
-        const account = await program.account.calculator.fetch(calculator.publicKey)
-        assert.ok(account.greeting === "Welcome to Solana")
-    })
-})
+        });
+
+        const account = await program.account.calculator.fetch(calculator.publicKey);
+        assert.ok(account.greeting === "Welcome to Solana");
+    });
+});
